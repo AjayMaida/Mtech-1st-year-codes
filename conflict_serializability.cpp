@@ -22,7 +22,7 @@ bool checkcycle(int node, std::vector<std::set<int>> &edge, std::vector<int> &vi
     dfsvis[node] = 0;
     return false;
 }
-//funtion to chech cycle in graph
+//funtion to check cycle in graph
 bool iscycle(int n, std::vector<std::set<int>> &edge)
 {
     std::vector<int> vis(n + 1, 0);
