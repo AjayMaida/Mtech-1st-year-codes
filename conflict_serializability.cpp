@@ -109,7 +109,7 @@ int main()
         {
             std::cout << "Conflict serislizable \n";
             std::cout << "its serializability order is :"
-                      << "T1\n";
+                      << "\n";
             return 0;
         }
 
