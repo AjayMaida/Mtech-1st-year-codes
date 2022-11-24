@@ -93,7 +93,7 @@ int main()
 
         std::vector<std::pair<int, std::string>> trans;
 
-        while (file)
+        while (!file.eof())
         {
             std::getline(file, mystring);
 
@@ -107,9 +107,9 @@ int main()
         }
         if (num_trans == 1)
         {
-            std::cout << "Conflict serislizable \n";
-            std::cout << "its serializability order is :"
-                      << "T1\n";
+            std::cout << "Conflict serializable \n";
+            std::cout << "its serial Schedule  :"
+                      << "\n";
             return 0;
         }
 
@@ -124,6 +124,7 @@ int main()
                     if (trans[i].first != trans[j].first && trans[j].second[0] == 'W' and trans[i].second[2] == trans[j].second[2])
                         edge[trans[i].first].insert(trans[j].first);
                 }
+                
                 if (trans[i].second[0] == 'W')
                 {
                     if (trans[i].first != trans[j].first && trans[j].second[2] == trans[i].second[2])
