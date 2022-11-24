@@ -22,7 +22,7 @@ bool checkcycle(int node, std::vector<std::set<int>> &edge, std::vector<int> &vi
     dfsvis[node] = 0;
     return false;
 }
-
+//funtion to check cycle in graph
 bool iscycle(int n, std::vector<std::set<int>> &edge)
 {
     std::vector<int> vis(n + 1, 0);
@@ -37,7 +37,7 @@ bool iscycle(int n, std::vector<std::set<int>> &edge)
     }
     return false;
 }
-
+//function to print topological order of transaction
 void topol(std::vector<int> &indeg, std::vector<std::set<int>> &edge, int n)
 {
     std::queue<int> pq;
@@ -107,8 +107,13 @@ int main()
         }
         if (num_trans == 1)
         {
+<<<<<<< HEAD
             std::cout << "Conflict serializable \n";
             std::cout << "its serial Schedule  :"
+=======
+            std::cout << "Conflict serislizable \n";
+            std::cout << "its serializability order is :"
+>>>>>>> d374a5fdc3f82c0aecf9eee1a8db7b215ed2a3e8
                       << "\n";
             return 0;
         }
