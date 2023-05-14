@@ -81,7 +81,7 @@ def OW_Evaluation():
     evaluation_type = 'OpenWorld_WTFPAD'
     print ("Evaluation type: ", evaluation_type)
     threshold = 1.0 - 1 / np.logspace(0.05, 2, num=15, endpoint=True)
-    file_name = '../results/%s.csv'%evaluation_type
+    file_name = 'D:\\dataset\\results\\%s.csv'%evaluation_type
     log_file =  open(file_name, "wb")
     # Load data
     dataset = {}
@@ -90,7 +90,7 @@ def OW_Evaluation():
     from utility import LoadDataWTFPADOW_Evaluation
     X_test_Mon, y_test_Mon, X_test_Unmon, y_test_Unmon = LoadDataWTFPADOW_Evaluation()
     # Load pre-trained model saved from 'Open_World_DF_***_Training.py'
-    model_name = '../saved_trained_models/OpenWorld_WTFPAD.h5'
+    model_name = 'D:\\dataset\\saved_trained_models\\OpenWorld_WTFPAD.h5'
 
     dataset['X_test_Mon'] = X_test_Mon
     dataset['y_test_Mon'] = y_test_Mon

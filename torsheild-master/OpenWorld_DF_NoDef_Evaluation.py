@@ -11,7 +11,7 @@ os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3'
 def Prediction(trained_model = None, dataset = None):
     X_test_Mon = dataset['X_test_Mon'].astype('float32')
     X_test_Unmon = dataset['X_test_Unmon'].astype('float32')
-    print "Total testing data ", len(X_test_Mon) + len(X_test_Unmon)
+    print ("Total testing data ", len(X_test_Mon) + len(X_test_Unmon))
     X_test_Mon = X_test_Mon[:, :, np.newaxis]
     X_test_Unmon = X_test_Unmon[:, :, np.newaxis]
     result_Mon = trained_model.predict(X_test_Mon, verbose=2)
@@ -22,7 +22,7 @@ def Prediction(trained_model = None, dataset = None):
 def Evaluation(threshold_val = None, monitored_label = None,
                    unmonitored_label = None, result_Mon = None,
                    result_Unmon = None, log_file = None):
-    print "Testing with threshold = ", threshold_val
+    print ("Testing with threshold = ", threshold_val)
     TP = 0
     FP = 0
     TN = 0
@@ -60,53 +60,53 @@ def Evaluation(threshold_val = None, monitored_label = None,
         elif predicted_class in unmonitored_label: # predicted as Unmonitored and actual site is Unmonitored
             TN = TN + 1
 
-    print "TP : ", TP
-    print "FP : ", FP
-    print "TN : ", TN
-    print "FN : ", FN
-    print "Total  : ", TP + FP + TN + FN
+    print ("TP : ", TP)
+    print ("FP : ", FP)
+    print ("TN : ", TN)
+    print( "FN : ", FN)
+    print ("Total  : ", TP + FP + TN + FN)
     TPR = float(TP) / (TP + FN)
-    print "TPR : ", TPR
+    print ("TPR : ", TPR)
     FPR = float(FP) / (FP + TN)
-    print "FPR : ",  FPR
+    print ("FPR : ",  FPR)
     Precision = float(TP) / (TP + FP)
-    print "Precision : ", Precision
+    print ("Precision : ", Precision)
     Recall = float(TP) / (TP + FN)
-    print "Recall : ", Recall
-    print "\n"
+    print ("Recall : ", Recall)
+    print ("\n")
     log_file.writelines("%.6f,%d,%d,%d,%d,%.6f,%.6f,%.6f,%.6f\n"%(threshold_val, TP, FP, TN, FN, TPR, FPR, Precision, Recall))
 
 # The evaluation of Open World scenario
 def OW_Evaluation():
     evaluation_type = 'OpenWorld_NoDef'
-    print "Evaluation type: ", evaluation_type
+    print ("Evaluation type: ", evaluation_type)
     threshold = 1.0 - 1 / np.logspace(0.05, 2, num=15, endpoint=True)
-    file_name = '../results/%s.csv'%evaluation_type
+    file_name = 'D:\\dataset\\results\\%s.csv'%evaluation_type
     log_file =  open(file_name, "wb")
     # Load data
     dataset = {}
     model_name = ''
-    print "Loading data ..."
+    print ("Loading data ...")
     from utility import LoadDataNoDefOW_Evaluation
     X_test_Mon, y_test_Mon, X_test_Unmon, y_test_Unmon = LoadDataNoDefOW_Evaluation()
     # Load pre-trained model saved from 'Open_World_DF_***_Training.py'
-    model_name = '../saved_trained_models/OpenWorld_NoDef.h5'
+    model_name = 'D:\\dataset\\saved_trained_models\\OpenWorld_NoDef.h5'
 
     dataset['X_test_Mon'] = X_test_Mon
     dataset['y_test_Mon'] = y_test_Mon
     dataset['X_test_Unmon'] = X_test_Unmon
     dataset['y_test_Unmon'] = y_test_Unmon
 
-    print "Data loaded!"
-    print "Loading DF model ..."
-    print "The log file will be saved at ", file_name
-    print "-- The log file will contains"
-    print "-- TP, FP, TN, FN, TPR, FPR, Precision, and Recall for each different threshold"
-    print "-- These results will be used to plot the ROC or Precision&Recall Graph"
+    print ("Data loaded!")
+    print ("Loading DF model ...")
+    print ("The log file will be saved at ", file_name)
+    print ("-- The log file will contains")
+    print ("-- TP, FP, TN, FN, TPR, FPR, Precision, and Recall for each different threshold")
+    print ("-- These results will be used to plot the ROC or Precision&Recall Graph")
     trained_model = load_model(model_name)
-    print "Model loaded!"
-    print "Evaluation Type: ", evaluation_type
-    print "Use the model from ", model_name
+    print ("Model loaded!")
+    print ("Evaluation Type: ", evaluation_type)
+    print ("Use the model from ", model_name)
     result_Mon, result_Unmon = Prediction(trained_model = trained_model, dataset = dataset)
     monitored_label = list(y_test_Mon)
     unmonitored_label = list(y_test_Unmon)

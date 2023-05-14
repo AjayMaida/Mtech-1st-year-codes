@@ -50,7 +50,8 @@ def calc_dist(source,target):
     return total
 
 # Training the DF model
-NB_EPOCH = 10   # Number of training epoch
+#NB_EPOCH = 10   # Number of training epoch
+NB_EPOCH = 1   # Number of training epoch
 BATCH_SIZE = 128 # Batch size
 VERBOSE = 2 # Output display mode
 LENGTH = 5000 # Packet sequence length
@@ -66,21 +67,21 @@ def create_model():
     return model
 
 OPTIMIZER = Adamax(lr=0.002, beta_1=0.9, beta_2=0.999, epsilon=1e-08, decay=0.0) # Optimizer
-with open('/content/drive/My Drive/NoDef/X_test_NoDef.pkl', 'rb') as handle:
+with open('D:\\dataset\\ClosedWorld\\NoDef\\X_test_NoDef.pkl', 'rb') as handle:
 	X_test = np.array(pickle.load(handle,encoding="bytes"))
-with open('/content/drive/My Drive/NoDef/y_test_NoDef.pkl', 'rb') as handle:
+with open('D:\\dataset\\ClosedWorld\\NoDef\\y_test_NoDef.pkl', 'rb') as handle:
 	y_test = np.array(pickle.load(handle,encoding="bytes"))
 size=X_test.shape[0]
-'''
-outfile1 = open("/content/drive/My Drive/Adversarial_Traces_x_alpha30_only1.pkl",'wb')
-outfile2 = open("/content/drive/My Drive/Adversarial_Traces_y_alpha30_only1.pkl",'wb')'''
+outfile1 = open("D:\\dataset\\GAT\\Adversarial_Traces_x_alpha30_only1.pkl",'wb')
+outfile2 = open("D:\\dataset\\GAT\\Adversarial_Traces_y_alpha30_only1.pkl",'wb')
 datax=[]
 datay=[]
 model=create_model()
 totalpadding=0
 packets=0
-model.load_weights('/content/drive/My Drive/models/nodef_model_weights_trainer.h5')
-for l in range(0,9500):
+model.load_weights('D:\\dataset\\nodef_model_weights_trainer.h5')
+#for l in range(0,9500):
+for l in range(0,500):
     
     dummy_x=X_test[l]
     dummy_y=y_test[l]
@@ -237,7 +238,7 @@ for l in range(0,9500):
             if(u==10):
                 break
             
-            predict=model.predict_classes(answer2)
+            predict=np.argmax(model.predict(answer2), axis=-1)
             prediction=int(predict[0])
 
             if(val==prediction or dummy_y!=prediction):
@@ -257,9 +258,9 @@ for l in range(0,9500):
 print("Total padding ",totalpadding)
 print("total packets",packets)
 print("percentage",(totalpadding/(totalpadding+packets))*100,"%")
-'''pickle.dump(datax,outfile1)
+pickle.dump(datax,outfile1)
 pickle.dump(datay,outfile2)
 
 outfile1.close()
-outfile2.close()'''
+outfile2.close()
 

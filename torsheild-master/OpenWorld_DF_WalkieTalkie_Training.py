@@ -14,7 +14,8 @@ os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3'
 EXP_Type = 'OpenWorld_WalkieTalkie'
 print ("Experimental Type: ", EXP_Type)
 # network and training
-NB_EPOCH = 30
+#NB_EPOCH = 30
+NB_EPOCH = 2
 print ("Number of Epoch: ", NB_EPOCH)
 BATCH_SIZE = 128
 VERBOSE = 1
@@ -25,7 +26,8 @@ NB_CLASSES = 101 # number of outputs: 100 Monitored websites + 1 Unmonitored web
 INPUT_SHAPE = (LENGTH,1)
 
 X_train, y_train, X_valid, y_valid = LoadDataWalkieTalkieOW_Training()
-K.set_image_dim_ordering("tf") # tf is tensorflow
+#K.set_image_dim_ordering("tf") # tf is tensorflow
+K.set_image_data_format('channels_last')
 # consider them as float and normalize
 X_train = X_train.astype('float32')
 X_valid = X_valid.astype('float32')
@@ -51,6 +53,7 @@ model = DFNet.build(input_shape=INPUT_SHAPE, classes=NB_CLASSES)
 
 model.compile(loss="categorical_crossentropy", optimizer=OPTIMIZER,
 	metrics=["accuracy"])
+
 print ("Model compiled")
 
 # Start training
@@ -60,7 +63,7 @@ history = model.fit(X_train, y_train,
 
 # Save model
 print ("Saving Model")
-savedpath ='../saved_trained_models/%s.h5'%str(EXP_Type)
+savedpath ='D:\\dataset\\saved_trained_models\\%s.h5'%str(EXP_Type)
 model.save(savedpath)
 print ("Saving Model Done!", savedpath)
 

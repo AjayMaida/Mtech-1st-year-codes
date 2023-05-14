@@ -24,8 +24,8 @@ random.seed(0)
 os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3'
 
 # Use only CPU
-#os.environ["CUDA_DEVICE_ORDER"] = "PCI_BUS_ID"   # see issue #152
-#os.environ["CUDA_VISIBLE_DEVICES"] = ""
+os.environ["CUDA_DEVICE_ORDER"] = "PCI_BUS_ID"   # see issue #152
+os.environ["CUDA_VISIBLE_DEVICES"] = ""
 
 description = "Training and evaluating DF model for closed-world scenario on non-defended dataset"
 
@@ -46,7 +46,10 @@ INPUT_SHAPE = (LENGTH,1)
 print ("Loading and preparing data for training, and evaluating the model")
 X_train, y_train, X_valid, y_valid, X_test, y_test = LoadDataNoDefCW()
 # Please refer to the dataset format in readme
-K.tensorflow_backend.set_image_dim_ordering("tf") # tf is tensorflow
+#TODO :
+#K.tensorflow_backend.set_image_dim_ordering("tf") # tf is tensorflow
+#K.common.set_image_dim_ordering('tf')
+K.set_image_data_format('channels_last')
 print(X_train[1].tolist())
 for i in range(len(X_train)):
     for j in range(len(X_train[i])):
@@ -74,11 +77,13 @@ for i in range(len(X_valid)):
             break
 # Convert data as float32 type
 print(X_train[1].tolist())
+
 '''
-filenew1=open('/content/drive/My Drive/models/trainerx_nodef.pkl','wb')
-filenew2=open('/content/drive/My Drive/models/trainery_nodef.pkl','wb')
-filenew3=open('/content/drive/My Drive/models/attackerx_nodef.pkl','wb')
-filenew4=open('/content/drive/My Drive/models/attackery_nodef.pkl','wb')
+# ajay uncommented this code (from line 78 to line 107)
+filenew2=open('D:\\dataset\\models\\trainery_nodef.pkl','wb')
+filenew3=open('D:\\dataset\\models\\attackerx_nodef.pkl','wb')
+filenew4=open('D:\\dataset\\models\\attackery_nodef.pkl','wb')
+filenew1=open('D:\\dataset\\models\\trainerx_nodef.pkl','wb')
 datax=[]
 datay=[]
 datadx=[]
@@ -104,8 +109,8 @@ print(datax.shape)
 print(datay.shape)
 print(datadx.shape)
 print(datady.shape)
-print('dump complete')
-'''
+print('dump complete')'''
+
 X_train = X_train.astype('float32')
 X_valid = X_valid.astype('float32')
 X_test = X_test.astype('float32')
@@ -141,8 +146,8 @@ history = model.fit(X_train, y_train,
 		batch_size=BATCH_SIZE, epochs=NB_EPOCH,
 		verbose=VERBOSE, validation_data=(X_valid, y_valid),shuffle=True)
 
-model.save('/content/drive/My Drive/models/nodef_model_upgraded.h5')
-model.save_weights('/content/drive/My Drive/models/nodef_model_weights_upgraded.h5')
+model.save('D:\\dataset\\nodef_model_upgraded.h5')
+model.save_weights('D:\\dataset\\nodef_model_weights_upgraded.h5')
 # Start evaluating model with testing data
 score_test = model.evaluate(X_test, y_test, verbose=VERBOSE)
 print("Testing accuracy:", score_test[1])

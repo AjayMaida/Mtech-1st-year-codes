@@ -6,15 +6,22 @@ def LoadDataNoDefCW():
 
     print("Loading non-defended dataset for closed-world scenario")
     # Point to the directory storing data
-    dataset_dir = '/content/drive/My Drive/NoDef/'
+    dataset_dir = 'D:\\dataset\\ClosedWorld\\NoDef\\'
 
     # X represents a sequence of traffic directions
     # y represents a sequence of corresponding label (website's label)
 
     # Load training data
-    with open('/content/drive/My Drive/models/attackerx_nodef.pkl', 'rb') as handle:
+   # open('D:\\dataset\\models\\attackerx_nodef.pkl', "wb") #ajay have added this 
+   # open('D:\\dataset\\models\\attackery_nodef.pkl', "wb") #ajay have added this 
+   # TODO :
+    # with open('D:\\dataset\\models\\attackerx_nodef.pkl', 'rb') as handle:
+    #     X_train = np.array(pickle.load(handle,encoding="bytes"))
+    # with open('D:\\dataset\\models\\attackery_nodef.pkl', 'rb') as handle:
+    #     y_train = np.array(pickle.load(handle,encoding="bytes"))
+    with open('D:\\dataset\\ClosedWorld\\NoDef\\X_train_NoDef.pkl', 'rb') as handle:
         X_train = np.array(pickle.load(handle,encoding="bytes"))
-    with open('/content/drive/My Drive/models/attackery_nodef.pkl', 'rb') as handle:
+    with open('D:\\dataset\\ClosedWorld\\NoDef\\y_train_NoDef.pkl', 'rb') as handle:
         y_train = np.array(pickle.load(handle,encoding="bytes"))
 
     # Load validation data
@@ -44,7 +51,7 @@ def LoadDataWTFPADCW():
 
     print ("Loading WTF-PAD dataset for closed-world scenario")
     # Point to the directory storing data
-    dataset_dir = '/content/drive/My Drive/WTFPAD/'
+    dataset_dir = 'D:\\dataset\\ClosedWorld\\WTFPAD\\'
 
     # X represents a sequence of traffic directions
     # y represents a sequence of corresponding label (website's label)
@@ -82,7 +89,7 @@ def LoadDataWalkieTalkieCW():
 
     print ("Loading Walkie-Talkie dataset for closed-world scenario")
     # Point to the directory storing data
-    dataset_dir = '/content/drive/My Drive/WalkieTalkie/'
+    dataset_dir = 'D:\\dataset\\ClosedWorld\\WalkieTalkie\\'
 
     # X represents a sequence of traffic directions
     # y represents a sequence of corresponding label (website's label)
@@ -120,22 +127,22 @@ def LoadDataNoDefOW_Training():
 
     print ("Loading non-defended dataset for open-world scenario for training")
     # Point to the directory storing data
-    dataset_dir = '../dataset/OpenWorld/NoDef/'
+    dataset_dir = 'D:\\dataset\\OpenWorld\\NoDef\\'
 
     # X represents a sequence of traffic directions
     # y represents a sequence of corresponding label (website's label)
 
     # Load training data
     with open(dataset_dir + 'X_train_NoDef.pkl', 'rb') as handle:
-        X_train = np.array(pickle.load(handle))
+        X_train = np.array(pickle.load(handle,encoding="latin1"))
     with open(dataset_dir + 'y_train_NoDef.pkl', 'rb') as handle:
-        y_train = np.array(pickle.load(handle))
+        y_train = np.array(pickle.load(handle,encoding="latin1"))
 
     # Load validation data
     with open(dataset_dir + 'X_valid_NoDef.pkl', 'rb') as handle:
-        X_valid = np.array(pickle.load(handle))
+        X_valid = np.array(pickle.load(handle,encoding="latin1"))
     with open(dataset_dir + 'y_valid_NoDef.pkl', 'rb') as handle:
-        y_valid = np.array(pickle.load(handle))
+        y_valid = np.array(pickle.load(handle,encoding="latin1"))
 
 
     print ("Data dimensions:")
@@ -151,20 +158,20 @@ def LoadDataNoDefOW_Evaluation():
 
     print ("Loading non-defended dataset for open-world scenario for evaluation")
     # Point to the directory storing data
-    dataset_dir = '../dataset/OpenWorld/NoDef/'
+    dataset_dir = 'D:\\dataset\\OpenWorld\\NoDef\\'
 
     # X represents a sequence of traffic directions
     # y represents a sequence of corresponding label (website's label)
 
     # Load training data
     with open(dataset_dir + 'X_test_Mon_NoDef.pkl', 'rb') as handle:
-        X_test_Mon = pickle.load(handle)
+        X_test_Mon = np.array(pickle.load(handle,encoding="latin1"))
     with open(dataset_dir + 'y_test_Mon_NoDef.pkl', 'rb') as handle:
-        y_test_Mon = pickle.load(handle)
+        y_test_Mon = np.array(pickle.load(handle,encoding="latin1"))
     with open(dataset_dir + 'X_test_Unmon_NoDef.pkl', 'rb') as handle:
-        X_test_Unmon = pickle.load(handle)
+        X_test_Unmon = np.array(pickle.load(handle,encoding="latin1"))
     with open(dataset_dir + 'y_test_Unmon_NoDef.pkl', 'rb') as handle:
-        y_test_Unmon = pickle.load(handle)
+        y_test_Unmon = np.array(pickle.load(handle,encoding="latin1"))
 
     X_test_Mon = np.array(X_test_Mon)
     y_test_Mon = np.array(y_test_Mon)
@@ -178,22 +185,22 @@ def LoadDataWTFPADOW_Training():
 
     print ("Loading WTF-PAD dataset for open-world scenario for training")
     # Point to the directory storing data
-    dataset_dir = '../dataset/OpenWorld/WTFPAD/'
+    dataset_dir = 'D:\\dataset\\OpenWorld\\WTFPAD\\'
 
     # X represents a sequence of traffic directions
     # y represents a sequence of corresponding label (website's label)
 
     # Load training data
     with open(dataset_dir + 'X_train_WTFPAD.pkl', 'rb') as handle:
-        X_train = np.array(pickle.load(handle))
+        X_train = np.array(pickle.load(handle,encoding="latin1"))
     with open(dataset_dir + 'y_train_WTFPAD.pkl', 'rb') as handle:
-        y_train = np.array(pickle.load(handle))
+        y_train = np.array(pickle.load(handle,encoding="latin1"))
 
     # Load validation data
     with open(dataset_dir + 'X_valid_WTFPAD.pkl', 'rb') as handle:
-        X_valid = np.array(pickle.load(handle))
+        X_valid = np.array(pickle.load(handle,encoding="latin1"))
     with open(dataset_dir + 'y_valid_WTFPAD.pkl', 'rb') as handle:
-        y_valid = np.array(pickle.load(handle))
+        y_valid = np.array(pickle.load(handle,encoding="latin1"))
 
 
     print ("Data dimensions:")
@@ -209,20 +216,20 @@ def LoadDataWTFPADOW_Evaluation():
 
     print ("Loading WTF-PAD dataset for open-world scenario for evaluation")
     # Point to the directory storing data
-    dataset_dir = '../dataset/OpenWorld/WTFPAD/'
+    dataset_dir = 'D:\\dataset\\OpenWorld\\WTFPAD\\'
 
     # X represents a sequence of traffic directions
     # y represents a sequence of corresponding label (website's label)
 
     # Load training data
     with open(dataset_dir + 'X_test_Mon_WTFPAD.pkl', 'rb') as handle:
-        X_test_Mon = pickle.load(handle)
+        X_test_Mon = pickle.load(handle,encoding="latin1")
     with open(dataset_dir + 'y_test_Mon_WTFPAD.pkl', 'rb') as handle:
-        y_test_Mon = pickle.load(handle)
+        y_test_Mon = pickle.load(handle,encoding="latin1")
     with open(dataset_dir + 'X_test_Unmon_WTFPAD.pkl', 'rb') as handle:
-        X_test_Unmon = pickle.load(handle)
+        X_test_Unmon = pickle.load(handle,encoding="latin1")
     with open(dataset_dir + 'y_test_Unmon_WTFPAD.pkl', 'rb') as handle:
-        y_test_Unmon = pickle.load(handle)
+        y_test_Unmon = pickle.load(handle,encoding="latin1")
 
     X_test_Mon = np.array(X_test_Mon)
     y_test_Mon = np.array(y_test_Mon)
@@ -236,7 +243,7 @@ def LoadDataWalkieTalkieOW_Training():
 
     print ("Loading Walkie-Talkie dataset for open-world scenario for training")
     # Point to the directory storing data
-    dataset_dir = '../dataset/OpenWorld/WalkieTalkie/'
+    dataset_dir = 'D:\\dataset\\OpenWorld\\WalkieTalkie\\'
 
     # X represents a sequence of traffic directions
     # y represents a sequence of corresponding label (website's label)
@@ -267,7 +274,7 @@ def LoadDataWalkieTalkieOW_Evaluation():
 
     print ("Loading Walkie-Talkie dataset for open-world scenario for evaluation")
     # Point to the directory storing data
-    dataset_dir = '../dataset/OpenWorld/WalkieTalkie/'
+    dataset_dir = 'D:\\dataset\\OpenWorld\\WalkieTalkie\\'
 
     # X represents a sequence of traffic directions
     # y represents a sequence of corresponding label (website's label)

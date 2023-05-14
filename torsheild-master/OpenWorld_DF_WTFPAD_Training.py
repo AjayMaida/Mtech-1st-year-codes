@@ -14,7 +14,8 @@ os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3'
 EXP_Type = 'OpenWorld_WTFPAD'
 print( "Experimental Type: ", EXP_Type)
 # network and training
-NB_EPOCH = 40
+#NB_EPOCH = 40
+NB_EPOCH = 2
 print( "Number of Epoch: ", NB_EPOCH)
 BATCH_SIZE = 128
 VERBOSE = 1
@@ -25,7 +26,9 @@ NB_CLASSES = 96 # number of outputs: 95 Monitored websites + 1 Unmonitored websi
 INPUT_SHAPE = (LENGTH,1)
 
 X_train, y_train, X_valid, y_valid = LoadDataWTFPADOW_Training()
-K.set_image_dim_ordering("tf") # tf is tensorflow
+#K.set_image_dim_ordering("tf") # tf is tensorflow
+K.set_image_data_format('channels_last')
+
 # consider them as float and normalize
 X_train = X_train.astype('float32')
 X_valid = X_valid.astype('float32')
@@ -60,7 +63,7 @@ history = model.fit(X_train, y_train,
 
 # Save model
 print ("Saving Model")
-savedpath ='../saved_trained_models/%s.h5'%str(EXP_Type)
+savedpath ='D:\\dataset\\saved_trained_models%s.h5'%str(EXP_Type)
 model.save(savedpath)
 print ("Saving Model Done!", savedpath)
 

@@ -26,8 +26,8 @@ random.seed(0)
 os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3'
 
 # Use only CPU
-#os.environ["CUDA_DEVICE_ORDER"] = "PCI_BUS_ID"   # see issue #152
-#os.environ["CUDA_VISIBLE_DEVICES"] = ""
+os.environ["CUDA_DEVICE_ORDER"] = "PCI_BUS_ID"   # see issue #152
+os.environ["CUDA_VISIBLE_DEVICES"] = ""
 
 description = "Training and evaluating DF model for closed-world scenario on WTF-PAD dataset"
 
@@ -48,8 +48,9 @@ INPUT_SHAPE = (LENGTH,1)
 print ("Loading and preparing data for training, and evaluating the model")
 X_train, y_train, X_valid, y_valid, X_test, y_test = LoadDataWTFPADCW()
 # Please refer to the dataset format in readme
-K.common.set_image_dim_ordering("tf") # tf is tensorflow
-
+#TODO
+#K.common.set_image_dim_ordering("tf") # tf is tensorflow
+K.set_image_data_format('channels_last')
 # Convert data as float32 type
 X_train = X_train.astype('float32')
 X_valid = X_valid.astype('float32')
