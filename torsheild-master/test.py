@@ -68,13 +68,13 @@ def create_model():
 OPTIMIZER = Adamax(lr=0.002, beta_1=0.9, beta_2=0.999, epsilon=1e-08, decay=0.0) # Optimizer
 
 #Opening the Traces generated
-with open('/content/drive/My Drive/Adversarial_Traces_x_alpha30_only1.pkl', 'rb') as handle:
+with open('D:\\dataset\\GAT\\Adversarial_Traces_x_alpha30_only1.pkl', 'rb') as handle:
 	X_test = np.array(pickle.load(handle,encoding="bytes"))
 
 #Testing on DeepFingerprinting Attacker Model
-with open('/content/drive/My Drive/NoDef/X_test_NoDef.pkl', 'rb') as handle:
+with open('D:\\dataset\\ClosedWorld\\NoDef\\X_test_NoDef.pkl', 'rb') as handle:
 	X_test1 = np.array(pickle.load(handle,encoding="bytes"))
-with open('/content/drive/My Drive/NoDef/y_test_NoDef.pkl', 'rb') as handle:
+with open('D:\\dataset\\ClosedWorld\\NoDef\\y_test_NoDef.pkl', 'rb') as handle:
 	y_test = np.array(pickle.load(handle,encoding="bytes"))
 print(y_test.shape)
 count=0
@@ -87,7 +87,7 @@ print(count)'''
 #print(len(X_test_old[0]))
 
 model=create_model()
-model.load_weights('/content/drive/My Drive/models/nodef_model_weights_attacker.h5')
+model.load_weights('D:\\dataset\\nodef_model_weights_trainer.h5')
 X_test1=[]
 count=0
 
