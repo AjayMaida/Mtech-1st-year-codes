@@ -80,8 +80,7 @@ model=create_model()
 totalpadding=0
 packets=0
 model.load_weights('D:\\dataset\\nodef_model_weights_trainer.h5')
-#for l in range(0,9500):
-for l in range(0,500):
+for l in range(0,9500):
     
     dummy_x=X_test[l]
     dummy_y=y_test[l]
