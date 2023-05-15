@@ -90,3 +90,4 @@ class DFNet:
         model.add(Dense(classes, kernel_initializer=glorot_uniform(seed=0), name='fc3'))
         model.add(Activation('softmax', name="softmax"))
         return model
+
