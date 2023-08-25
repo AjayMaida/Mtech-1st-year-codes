@@ -1,0 +1,5 @@
+1.first compile the src code:
+g++ .\mergeJoin.cpp -o mergeJoin
+
+2. Now run the .exe file:
+.\mergeJoin C:\Users\ajaym\Documents\new_visual\project-SortMerge_join_algo\file1.txt C:\Users\ajaym\Documents\new_visual\project-SortMerge_join_algo\file2.txt 50

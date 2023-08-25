@@ -1,4 +1,6 @@
 # DF model used for WTF-PAD dataset
+import tensorflow as tf
+from keras import backend as K
 from keras.models import Sequential
 from keras.layers import Conv1D, MaxPooling1D, BatchNormalization
 from keras.layers.core import Activation, Flatten, Dense, Dropout
@@ -9,6 +11,10 @@ from keras.initializers import glorot_uniform
 class DFNet:
     @staticmethod
     def build(input_shape, classes):
+
+        # Set TensorFlow to use the GPU backend
+        tf.config.set_visible_devices(tf.config.list_physical_devices('GPU'), 'GPU')
+
         model = Sequential()
         #Block1
         filter_num = ['None',64,64,256,256]
